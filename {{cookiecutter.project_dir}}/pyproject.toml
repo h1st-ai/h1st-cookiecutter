@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "{{ cookiecutter.project_name }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.project_short_description }}"
+authors = ["{{ cookiecutter.author_name }} {{ cookiecutter.author_email }}"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+h1st = {git = "https://github.com/h1st-ai/h1st.git", rev = "main"}
+Django = "^3.2.4"
+djangorestframework = "^3.12.4"
+django-cors-headers = "^3.7.0"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.9.1"
+pre-commit = "^2.13.0"
+commitizen = "^2.17.11"
+pytest = "^6.2.4"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
