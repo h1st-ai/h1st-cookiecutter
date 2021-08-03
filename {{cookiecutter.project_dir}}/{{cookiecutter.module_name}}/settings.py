@@ -121,3 +121,31 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
+
+log_file = str(BASE_DIR.joinpath("{{ cookiecutter.module_name }}-django.log"))
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'key_value': {
+            'format': 'asctime={asctime} level={levelname} name={name} module={module} filename={filename} lineno={'
+                      'lineno} message={message} process={process} thread={thread}',
+            'style': '{',
+        }
+    },
+    'handlers': {
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': log_file,
+            'formatter': 'key_value'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
