@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{cookiecutter.project_dir}}-deployment
+  labels:
+    app: {{cookiecutter.project_dir}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{cookiecutter.project_dir}}
+  template:
+    metadata:
+      labels:
+        app: {{cookiecutter.project_dir}}
+    spec:
+      containers:
+        - name: {{cookiecutter.project_dir}}
+          image: {{cookiecutter.module_name}}:{{cookiecutter.version}}
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /logs
+              name: logs
+      volumes:
+        - name: logs
+          emptyDir: { }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{cookiecutter.project_dir}}-ui-deployment
+  labels:
+    app: {{cookiecutter.project_dir}}-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{cookiecutter.project_dir}}-ui
+  template:
+    metadata:
+      labels:
+        app: {{cookiecutter.project_dir}}-ui
+    spec:
+      containers:
+        - name: {{cookiecutter.project_dir}}-ui
+          image: {{cookiecutter.module_name}}-ui:{{cookiecutter.version}}
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /logs
+              name: logs
+      volumes:
+        - name: logs
+          emptyDir: { }
