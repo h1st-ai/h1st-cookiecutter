@@ -28,7 +28,7 @@ sys.path.append(str(ROOT_DIR / "{{ cookiecutter.project_dir }}"))
 # mod_wsgi daemon mode with each site in its own daemon process, or use
 # os.environ["DJANGO_SETTINGS_MODULE"] = "config.settings.production"
 os.environ.setdefault(
-    "DJANGO_SETTINGS_MODULE", "config.settings.production"
+    "DJANGO_SETTINGS_MODULE", "{{ cookiecutter.module_name }}.settings"
 )
 
 # This application object is used by any WSGI server configured to use this

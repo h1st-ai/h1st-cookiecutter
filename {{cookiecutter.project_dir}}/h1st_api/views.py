@@ -4,6 +4,10 @@ from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 
 
+def health(request):
+    return HttpResponse('all is good here')
+
+
 def default(request):
     text = 'Congratulations! This is your Human-First REST API!'
     return HttpResponse(text)

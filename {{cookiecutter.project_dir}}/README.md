@@ -2,7 +2,7 @@
 ## Running the application
 
 ### Prerequisites
-1. Python 3.8.10
+1. Python 3.8.11
 2. [Poetry](https://python-poetry.org/docs/#installation) 
 3. Nodejs 16.2.0
 
@@ -15,7 +15,6 @@ The server will be running and a request to `http://localhost:8000/api/foo` will
 
 ### Starting the UI
 ```shell
-nvm use v16.2.0
 cd h1st_react
 yarn start
 ```

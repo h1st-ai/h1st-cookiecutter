@@ -15,7 +15,9 @@ Including another URLconf
 """
 
 from django.urls import path,include
+from h1st_api import views
 
 urlpatterns = [
+    path("__health", views.health),
     path("api/v1/", include("h1st_api.urls"))
 ]
