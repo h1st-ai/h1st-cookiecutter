@@ -1,4 +1,21 @@
 # {{cookiecutter.project_name}}
+
+## Running the application using docker-compose
+### Prerequisites
+1. docker
+2. docker-compose
+
+### Starting the app
+```shell
+docker-compose build
+docker-compose up
+```
+
+### Stopping the app
+```shell
+docker-compose stop
+```
+
 ## Running the application
 
 ### Prerequisites

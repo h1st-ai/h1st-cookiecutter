@@ -2,6 +2,12 @@ FROM node:16-alpine3.14 as build
 
 ENV YARN_VERSION 1.22.5
 
+ARG APP_SERVER_HOST
+ARG APP_SERVER_PORT
+
+ENV REACT_APP_SERVER_HOST $APP_SERVER_HOST
+ENV REACT_APP_SERVER_PORT $APP_SERVER_PORT
+
 RUN apk update
 
 RUN apk add --no-cache --virtual .build-deps-yarn curl \

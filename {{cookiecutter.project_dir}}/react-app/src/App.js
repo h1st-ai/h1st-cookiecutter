@@ -22,7 +22,11 @@ class App extends React.Component {
 
     translate(event) {
         event.preventDefault();
-        axios.post('http://localhost:8000/api/v1/translate', {
+        let serviceIp = '';
+        if (process.env.REACT_APP_SERVER_HOST !== undefined) {
+            "http://" + process.env.REACT_APP_SERVER_HOST + ":" + process.env.REACT_APP_SERVER_PORT
+        }
+        axios.post(serviceIp + '/api/v1/translate', {
             'text': this.state.text,
             'input_language': 'english',
             'output_language': 'english'

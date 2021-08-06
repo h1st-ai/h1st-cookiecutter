@@ -23,7 +23,7 @@ WORKDIR /app
 
 COPY ./poetry.lock ./pyproject.toml ./
 
-RUN poetry config virtualenvs.in-project true && poetry install && poetry add gunicorn
+RUN poetry config virtualenvs.in-project true && poetry install
 
 COPY . ./
 
