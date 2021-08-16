@@ -120,22 +120,22 @@ REST_FRAMEWORK = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-log_file = str(BASE_DIR.joinpath("{{ cookiecutter.module_name }}-django.log"))
+LOG_FILE = str(BASE_DIR.joinpath("{{ cookiecutter.module_name }}-django.log"))
 
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
         'key_value': {
-            'format': 'asctime={asctime} level={levelname} name={name} module={module} filename={filename} lineno={'
-                      'lineno} message={message} process={process} thread={thread}',
+            'format': 'asctime={asctime} level={levelname} name={name} module={module} filename='
+                      '{filename} lineno={lineno} msg={message} process={process} thread={thread}',
             'style': '{',
         }
     },
     'handlers': {
         'file': {
             'class': 'logging.FileHandler',
-            'filename': log_file,
+            'filename': LOG_FILE,
             'formatter': 'key_value'
         },
     },

@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "{{ cookiecutter.project_name }}"
+name = "{{ cookiecutter.module_name }}"
 version = "{{ cookiecutter.version }}"
 description = "{{ cookiecutter.project_short_description }}"
-authors = ["{{ cookiecutter.author_name }} {{ cookiecutter.author_email }}"]
+authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
 exclude = ["react-app/*"]
 
 [tool.poetry.dependencies]
@@ -25,3 +25,10 @@ pytest = "^6.2.4"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pylint.format]
+# Maximum number of characters on a single line.
+max-line-length = 120
+
+[tool.pylint.design]
+max-parents = 15
