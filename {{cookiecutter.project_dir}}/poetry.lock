@@ -1150,6 +1150,33 @@ mccabe = ">=0.6,<0.7"
 toml = ">=0.7.1"
 
 [[package]]
+name = "pylint-django"
+version = "2.4.4"
+description = "A Pylint plugin to help Pylint understand the Django web framework"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pylint = ">=2.0"
+pylint-plugin-utils = ">=0.5"
+
+[package.extras]
+for_tests = ["django-tables2", "factory-boy", "coverage", "pytest"]
+with_django = ["django"]
+
+[[package]]
+name = "pylint-plugin-utils"
+version = "0.6"
+description = "Utilities and helpers for writing Pylint plugins"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pylint = ">=1.7"
+
+[[package]]
 name = "pynisher"
 version = "0.6.4"
 description = "A small Python library to limit the resources used by a function by executing it inside a subprocess."
@@ -1290,7 +1317,10 @@ gpustat = "*"
 grpcio = ">=1.28.1"
 jsonschema = "*"
 msgpack = ">=1.0.0,<2.0.0"
-numpy = {version = ">=1.16", markers = "python_version < \"3.9\""}
+numpy = [
+    {version = ">=1.16", markers = "python_version < \"3.9\""},
+    {version = ">=1.19.3", markers = "python_version >= \"3.9\""},
+]
 opencensus = "*"
 pandas = {version = "*", optional = true, markers = "extra == \"tune\""}
 prometheus-client = ">=0.7.1"
@@ -1742,7 +1772,7 @@ heapdict = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "214b4a6e85fb30ca2f72c09258c02ff151419e3b9582745195fd2a67718647ed"
+content-hash = "89f3142c7388d238bbade6b987047b3f646b87e6862342f545f6455eb18e5e50"
 
 [metadata.files]
 aiohttp = [
@@ -2706,6 +2736,14 @@ pydantic = [
 pylint = [
     {file = "pylint-2.9.6-py3-none-any.whl", hash = "sha256:2e1a0eb2e8ab41d6b5dbada87f066492bb1557b12b76c47c2ee8aa8a11186594"},
     {file = "pylint-2.9.6.tar.gz", hash = "sha256:8b838c8983ee1904b2de66cce9d0b96649a91901350e956d78f289c3bc87b48e"},
+]
+pylint-django = [
+    {file = "pylint-django-2.4.4.tar.gz", hash = "sha256:f63f717169b0c2e4e19c28f1c32c28290647330184fcb7427805ae9b6994f3fc"},
+    {file = "pylint_django-2.4.4-py3-none-any.whl", hash = "sha256:aff49d9602a39c027b4ed7521a041438893205918f405800063b7ff692b7371b"},
+]
+pylint-plugin-utils = [
+    {file = "pylint-plugin-utils-0.6.tar.gz", hash = "sha256:57625dcca20140f43731311cd8fd879318bf45a8b0fd17020717a8781714a25a"},
+    {file = "pylint_plugin_utils-0.6-py3-none-any.whl", hash = "sha256:2f30510e1c46edf268d3a195b2849bd98a1b9433229bb2ba63b8d776e1fc4d0a"},
 ]
 pynisher = [
     {file = "pynisher-0.6.4.tar.gz", hash = "sha256:111d91aad471375c0509a912415ff90053ef909100facf412511383af107c124"},

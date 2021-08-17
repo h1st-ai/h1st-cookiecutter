@@ -20,7 +20,7 @@ pylint = "^2.9.1"
 pre-commit = "^2.13.0"
 commitizen = "^2.17.11"
 pytest = "^6.2.4"
-
+pylint-django = "^2.4.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
