@@ -27,4 +27,4 @@ RUN poetry config virtualenvs.in-project true && poetry install
 
 COPY . ./
 
-CMD ["gunicorn", "h1st_basic_app.wsgi", "-b", "0.0.0.0:8080"]
+CMD ["gunicorn", "{{cookiecutter.module_name}}.wsgi", "-b", "0.0.0.0:8080"]
