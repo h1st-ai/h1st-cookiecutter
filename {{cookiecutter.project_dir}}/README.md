@@ -1,4 +1,4 @@
-# test project
+# {{cookiecutter.project_name}}
 
 ## Running the application using docker-compose
 ### Prerequisites
