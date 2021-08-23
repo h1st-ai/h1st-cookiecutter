@@ -28,11 +28,12 @@ docker-compose stop
 poetry install
 poetry run python manage.py runserver
 ```
-The server will be running and a request to `http://localhost:8000/api/foo` will respond with 200 OK.
+The server will be running and a request to `http://localhost:8000/api/v1/foo` will respond with 200 OK.
 
 ### Starting the UI
 ```shell
-cd h1st_react
+cd react_app
+yarn install
 yarn start
 ```
 The UI will be accessible at `http://localhost:3000/`

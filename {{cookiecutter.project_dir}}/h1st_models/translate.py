@@ -1,10 +1,10 @@
 """
 h1 model that can translate text in the specified language
 """
-import h1st.core as h1
+from h1st.model.rule_based_model import RuleBasedModel
 
 
-class TranslateModel(h1.RuleBasedModel):
+class TranslateModel(RuleBasedModel):
     """
     A rule-based model that "echoes" the input
     """
