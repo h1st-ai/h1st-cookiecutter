@@ -8,8 +8,9 @@
 ### Starting the app
 ```shell
 docker-compose build
-docker-compose up
+docker-compose up -d
 ```
+The app will be runnig and accessible at `http://localhost:80/`
 
 ### Stopping the app
 ```shell
