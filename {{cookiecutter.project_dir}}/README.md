@@ -35,8 +35,6 @@ The server will be running and a request to `http://localhost:8000/api/v1/foo` w
 ```shell
 cd react_app
 yarn install
-export REACT_APP_SERVER_HOST=localhost 
-export REACT_APP_SERVER_PORT=8000 
 yarn start
 ```
 The UI will be accessible at `http://localhost:3000/`
