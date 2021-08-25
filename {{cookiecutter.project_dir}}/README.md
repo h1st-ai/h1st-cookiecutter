@@ -10,7 +10,7 @@
 docker-compose build
 docker-compose up -d
 ```
-The app will be runnig and accessible at `http://localhost:80/`
+The app will be running and accessible at `http://localhost:80/`
 
 ### Stopping the app
 ```shell
