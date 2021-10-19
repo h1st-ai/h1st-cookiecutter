@@ -1,8 +1,9 @@
 version: "3"
 
 services:
-  {{cookiecutter.project_dir}}:
-    build: .
+  {{cookiecutter.project_dir}}-api:
+    build:
+      context: {{cookiecutter.module_name}}_api
     ports:
       - "8080:8080"
   {{cookiecutter.project_dir}}-ui:
@@ -14,8 +15,6 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - {{cookiecutter.project_dir}}
+      - {{cookiecutter.project_dir}}-api
     links:
-      - {{cookiecutter.project_dir}}
-
-
+      - {{cookiecutter.project_dir}}-api

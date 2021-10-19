@@ -14,11 +14,6 @@ from rest_framework.parsers import JSONParser
 import h1st_models.translate
 
 
-def health(request):
-    """health check"""
-    return HttpResponse('all is good here')
-
-
 def default(request):
     """default view"""
     text = 'Congratulations! This is your Human-First REST API!'
