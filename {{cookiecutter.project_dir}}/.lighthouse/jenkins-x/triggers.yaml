@@ -13,3 +13,9 @@ spec:
       source: "release.yaml"
       branches:
         - ^main$
+    - name: dev-release
+      context: "release"
+      always_run: true
+      source: "release.yaml"
+      branches:
+        - ^dev$
