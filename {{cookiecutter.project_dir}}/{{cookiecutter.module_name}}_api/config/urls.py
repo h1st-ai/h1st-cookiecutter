@@ -37,4 +37,3 @@ urlpatterns = [
         extra_context={'schema_url': 'openapi-schema'}
     ), name='redoc'),
 ]
-
