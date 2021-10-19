@@ -1,0 +1,6 @@
+apiVersion: v2
+name: "{{ cookiecutter.module_name }}_api"
+version: "{{ cookiecutter.version }}"
+description: API layer for {{ cookiecutter.project_name }}
+appVersion: "{{ cookiecutter.version }}"
+type: application
