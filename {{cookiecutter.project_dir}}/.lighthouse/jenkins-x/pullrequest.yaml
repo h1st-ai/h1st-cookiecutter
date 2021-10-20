@@ -29,18 +29,25 @@ spec:
               resources: { }
               env:
                 - name: POETRY_DJANGO_SETTINGS_MODULE
-                  value: "config.settings.local"
+                  value: "config.settings.test"
               script: |
                 #!/bin/sh
                 apt-get install -y libpq-dev gcc
+                cd {{cookiecutter.module_name}}_api
                 poetry check
                 poetry install --no-interaction
-                poetry run pylint --load-plugins pylint_django **/*.py
+                poetry run pylint --init-hook="sys.path.append('.')" --load-plugins pylint_django **/*.py
                 poetry run pytest
             - name: check-registry
               resources: {}
             - name: build-container-build
-              resources: {}
+                image: gcr.io/kaniko-project/executor:v1.6.0-debug
+                resources: { }
+                script: |
+                  #!/busybox/sh
+                  source .jx/variables.sh
+                  cp /tekton/creds-secrets/tekton-container-registry-auth/.dockerconfigjson /kaniko/.docker/config.json
+                  /kaniko/executor $KANIKO_FLAGS --context=/workspace/source/{{cookiecutter.module_name}}_api --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/{{cookiecutter.project_name}}-api:$VERSION
             - name: promote-jx-preview
               resources: {}
   podTemplate: {}

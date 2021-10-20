@@ -64,7 +64,7 @@ canary:
   gatewayLabels: {}
 
 service:
-  name: {{ cookiecutter.module_name }}_api
+  name: {{ cookiecutter.project_dir }}-api
   type: ClusterIP
   externalPort: 80
   internalPort: 8080
