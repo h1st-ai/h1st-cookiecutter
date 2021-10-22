@@ -49,18 +49,18 @@ spec:
             #!/busybox/sh
             source .jx/variables.sh
             cp /tekton/creds-secrets/tekton-container-registry-auth/.dockerconfigjson /kaniko/.docker/config.json
-            /kaniko/executor $KANIKO_FLAGS --context=/workspace/source/{{cookiecutter.module_name}}_api --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/{{cookiecutter.project_name}}-api:$VERSION
+            /kaniko/executor $KANIKO_FLAGS --context=/workspace/source/{{cookiecutter.module_name}}_api --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/{{cookiecutter.project_dir}}-api:$VERSION
         - name: promote-changelog
           image: ghcr.io/jenkins-x/jx-changelog:0.0.47
           resources: { }
           script: |
             #!/usr/bin/env sh
             source .jx/variables.sh
-            if [ -d "charts/{{cookiecutter.project_name}}-api" ]; then
-            jx gitops yset -p version -v "$VERSION" -f ./charts/{{cookiecutter.project_name}}-api/Chart.yaml
-            jx gitops yset -p appVersion -v "$VERSION" -f ./charts/{{cookiecutter.project_name}}-api/Chart.yaml
-            jx gitops yset -p 'image.repository' -v $DOCKER_REGISTRY/$DOCKER_REGISTRY_ORG/{{cookiecutter.project_name}}-api -f ./charts/{{cookiecutter.project_name}}-api/values.yaml
-            jx gitops yset -p 'image.tag' -v "$VERSION" -f ./charts/{{cookiecutter.project_name}}-api/values.yaml;
+            if [ -d "charts/{{cookiecutter.project_dir}}-api" ]; then
+            jx gitops yset -p version -v "$VERSION" -f ./charts/{{cookiecutter.project_dir}}-api/Chart.yaml
+            jx gitops yset -p appVersion -v "$VERSION" -f ./charts/{{cookiecutter.project_dir}}-api/Chart.yaml
+            jx gitops yset -p 'image.repository' -v $DOCKER_REGISTRY/$DOCKER_REGISTRY_ORG/{{cookiecutter.project_dir}}-api -f ./charts/{{cookiecutter.project_dir}}-api/values.yaml
+            jx gitops yset -p 'image.tag' -v "$VERSION" -f ./charts/{{cookiecutter.project_dir}}-api/values.yaml;
             else echo no charts; fi
 
             git add * || true

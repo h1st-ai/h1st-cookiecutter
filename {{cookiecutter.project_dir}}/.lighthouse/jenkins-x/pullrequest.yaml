@@ -47,7 +47,7 @@ spec:
                   #!/busybox/sh
                   source .jx/variables.sh
                   cp /tekton/creds-secrets/tekton-container-registry-auth/.dockerconfigjson /kaniko/.docker/config.json
-                  /kaniko/executor $KANIKO_FLAGS --context=/workspace/source/{{cookiecutter.module_name}}_api --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/{{cookiecutter.project_name}}-api:$VERSION
+                  /kaniko/executor $KANIKO_FLAGS --context=/workspace/source/{{cookiecutter.module_name}}_api --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/{{cookiecutter.project_dir}}-api:$VERSION
             - name: promote-jx-preview
               resources: {}
   podTemplate: {}
