@@ -1,5 +1,5 @@
 apiVersion: v2
-name: "{{ cookiecutter.project_name }}_api"
+name: "{{ cookiecutter.project_dir }}-api"
 version: "{{ cookiecutter.version }}"
 description: API layer for {{ cookiecutter.project_name }}
 appVersion: "{{ cookiecutter.version }}"
