@@ -1,26 +1,28 @@
 [tool.poetry]
-name = "{{ cookiecutter.module_name }}"
+name = "{{ cookiecutter.module_name }}_api"
 version = "{{ cookiecutter.version }}"
 description = "{{ cookiecutter.project_short_description }}"
 authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
-exclude = ["react-app/*"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "3.9.7"
 
-h1st = "0.0.3"
-Django = "^3.2.4"
+h1st = "0.0.5"
+Django = "^3.2.7"
 djangorestframework = "^3.12.4"
 django-cors-headers = "^3.7.0"
+django-environ = "^0.7.0"
+uritemplate = "^3.0.1"
 
 gunicorn = "^20.1.0"
 
 [tool.poetry.dev-dependencies]
-pylint = "^2.9.1"
-pre-commit = "^2.13.0"
-commitizen = "^2.17.11"
+pylint = "^2.10.2"
+pre-commit = "^2.15.0"
+commitizen = "^2.18.1"
 pytest = "^6.2.4"
-pylint-django = "^2.4.4"
+pylint-django = "2.3.0" # workaround for https://github.com/PyCQA/pylint-django/issues/309
+pytest-django = "^4.4.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -32,3 +34,6 @@ max-line-length = 120
 
 [tool.pylint.design]
 max-parents = 15
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
