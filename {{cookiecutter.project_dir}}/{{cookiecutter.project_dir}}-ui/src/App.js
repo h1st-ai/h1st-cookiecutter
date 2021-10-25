@@ -22,10 +22,7 @@ class App extends React.Component {
 
     translate(event) {
         event.preventDefault();
-        let serviceIp = '';
-        if (process.env.REACT_APP_SERVER_HOST !== undefined) {
-            serviceIp = "http://" + process.env.REACT_APP_SERVER_HOST + ":" + process.env.REACT_APP_SERVER_PORT
-        }
+        let serviceIp = "http://{{cookiecutter.project_dir}}-api";
         axios.post(serviceIp + '/api/v1/translate', {
             'text': this.state.text,
             'input_language': 'english',
@@ -52,7 +49,7 @@ class App extends React.Component {
                                 <textarea className="form-control" name='text' id='inputText' rows="3"
                                           value={this.state.text} onChange={this.handleInputChange}/>
                             <br/>
-                            <input type="submit" class="btn btn-primary mb-3" value="Translate"/>
+                            <input type="submit" className="btn btn-primary mb-3" value="Translate"/>
                         </form>
                     </div>
                     <div className="col">
