@@ -1,0 +1,6 @@
+apiVersion: v2
+name: "{{ cookiecutter.project_dir }}-ui"
+version: "{{ cookiecutter.version }}"
+description: UI for {{ cookiecutter.project_name }}
+appVersion: "{{ cookiecutter.version }}"
+type: application
