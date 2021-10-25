@@ -8,13 +8,8 @@ spec:
       optional: false
       source: "pullrequest.yaml"
   postsubmits:
-    - name: release
-      context: "release"
-      source: "release.yaml"
-      branches:
-        - ^main$
     - name: dev-release
-      context: "release"
+      context: "dev-release"
       always_run: true
       source: "release.yaml"
       branches:
