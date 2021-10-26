@@ -34,6 +34,9 @@ spec:
               resources: { }
               script: |
                 #!/usr/bin/env sh
+                {% if cookiecutter.docker_org_name|length > 0 %}
+                echo "DOCKER_REGISTRY_ORG='{{cookiecutter.docker_org_name}}'" >> .jx/variables.sh
+                {% endif %}
                 source .jx/variables.sh
                 for dir in charts/*/; do
                 path=${dir%/}
