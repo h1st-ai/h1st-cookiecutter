@@ -4,6 +4,7 @@
     "module_name": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
     "project_short_description": "H1st Basic App contains all the boilerplate you need to create a web app using Django and ReactJS.",
     "version": "0.0.1",
+    "docker_org_name": "",
     "author_name": "",
     "author_email": "",
     "_copy_without_render": [

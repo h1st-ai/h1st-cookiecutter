@@ -2,14 +2,14 @@ apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
   creationTimestamp: null
-  name: pullrequest
+  name: python-pr-validate
 spec:
   pipelineSpec:
     tasks:
-      - name: from-build-pack
-        resources: { }
+      - name: from-python-build-pack
+        resources: {}
         taskSpec:
-          metadata: { }
+          metadata: {}
           stepTemplate:
             image: uses:jenkins-x/jx3-pipeline-catalog/tasks/python/pullrequest.yaml@versionStream
             name: ""
@@ -19,9 +19,9 @@ spec:
                 memory: 512Mi
             workingDir: /workspace/source
           steps:
-            - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
+            - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone.yaml@versionStream
               name: ""
-              resources: { }
+              resources: {}
             - name: jx-variables
               resources: { }
             - name: build-python-validate
@@ -38,19 +38,7 @@ spec:
                 poetry install --no-interaction
                 poetry run pylint --init-hook="sys.path.append('.')" --load-plugins pylint_django **/*.py
                 poetry run pytest
-            - name: check-registry
-              resources: { }
-            - name: build-container-build
-              image: gcr.io/kaniko-project/executor:v1.6.0-debug
-              resources: { }
-              script: |
-                #!/busybox/sh
-                source .jx/variables.sh
-                cp /tekton/creds-secrets/tekton-container-registry-auth/.dockerconfigjson /kaniko/.docker/config.json
-                /kaniko/executor $KANIKO_FLAGS --context=/workspace/source/{{cookiecutter.module_name}}_api --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/{{cookiecutter.project_dir}}-api:$VERSION
-            - name: promote-jx-preview
-              resources: { }
-  podTemplate: { }
+  podTemplate: {}
   serviceAccountName: tekton-bot
   timeout: 12h0m0s
-status: { }
+status: {}

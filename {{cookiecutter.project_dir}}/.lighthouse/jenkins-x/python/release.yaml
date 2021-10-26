@@ -33,6 +33,10 @@ spec:
                 jx gitops variables
                 export APP_NAME='{{cookiecutter.project_dir}}-api'
                 echo "export APP_NAME='{{cookiecutter.project_dir}}-api'" >> .jx/variables.sh
+                {% if cookiecutter.docker_org_name|length > 0 %}
+                export DOCKER_REGISTRY_ORG='{{cookiecutter.docker_org_name}}'
+                echo "DOCKER_REGISTRY_ORG='{{cookiecutter.docker_org_name}}'" >> .jx/variables.sh
+                {% endif %}
               resources: { }
             - name: build-python-validate
               image: shiti/python-poetry:1.0.0

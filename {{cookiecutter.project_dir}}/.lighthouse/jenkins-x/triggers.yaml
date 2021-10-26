@@ -2,11 +2,16 @@ apiVersion: config.lighthouse.jenkins-x.io/v1alpha1
 kind: TriggerConfig
 spec:
   presubmits:
-    - name: pr
+    - name: js-validation
       context: "pr"
       always_run: true
       optional: false
-      source: "pullrequest.yaml"
+      source: "javascript/pullrequest.yaml"
+    - name: py-validation
+      context: "pr"
+      always_run: true
+      optional: false
+      source: "python/pullrequest.yaml"
   postsubmits:
     - name: dev-release
       context: "dev-release"
