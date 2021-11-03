@@ -22,8 +22,8 @@ jx:
   # whether to create a Release CRD when installing charts with Release CRDs included
   releaseCRD: true
 
-# define environment variables here as a map of key: value
-env:
+# define environment variables here
+extraEnv:
 
 # enable this flag to use knative serve to deploy the app
 knativeDeploy: false
