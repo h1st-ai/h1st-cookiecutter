@@ -49,9 +49,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
-{{- range $pkey, $pval := .Values.env }}
-        - name: {{ $pkey }}
-          value: {{ quote $pval }}
+{{- if .Values.extraEnv }}
+{{ toYaml .Values.extraEnv | indent 8}}
 {{- end }}
         envFrom:
 {{ toYaml .Values.envFrom | indent 10 }}
@@ -74,7 +73,7 @@ spec:
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
         volumeMounts:
-          - mountPath: /logs
+          - mountPath: /var/log
             name: logs
         resources:
 {{ toYaml .Values.resources | indent 12 }}

@@ -45,9 +45,8 @@ spec:
         env:
         - name: VERSION
           value: {{ .Chart.Version }}
-{{- range $pkey, $pval := .Values.env }}
-        - name: {{ $pkey }}
-          value: {{ quote $pval }}
+{{- if .Values.extraEnv }}
+{{ toYaml .Values.extraEnv | indent 8}}
 {{- end }}
         envFrom:
 {{ toYaml .Values.envFrom | indent 10 }}
