@@ -1,0 +1,6 @@
+apiVersion: v2
+name: {{ cookiecutter.project_dir }}-etl
+version: "{{ cookiecutter.version }}"
+description: ETL for {{ cookiecutter.project_name }}
+appVersion: "{{ cookiecutter.version }}"
+type: application
