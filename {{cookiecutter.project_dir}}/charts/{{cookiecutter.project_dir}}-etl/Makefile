@@ -1,6 +1,6 @@
 CHART_REPO := http://jenkins-x-chartmuseum:8080
 CURRENT=$(pwd)
-NAME := fixed-net-api
+NAME := {{cookiecutter.project_dir}}-etl
 OS := $(shell uname)
 RELEASE_VERSION := $(shell cat ../../VERSION)
 
