@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "fixed-net-etl"
-version = "0.1.0"
-description = "Furuno Fixed Net - ETL"
-authors = [" <>"]
+name = "{{ cookiecutter.module_name }}-etl"
+version = "{{ cookiecutter.version }}"
+description = "{ cookiecutter.project_short_description }} - ETL"
+authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
