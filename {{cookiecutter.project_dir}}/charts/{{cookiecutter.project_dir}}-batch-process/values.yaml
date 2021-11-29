@@ -1,13 +1,9 @@
 # Default values for {{cookiecutter.project_name}}-etl.
 # This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-replicaCount: 1
 # Add annotations to the pods
 podAnnotations: {}
 # Add labels to the pods
 podsLabels: {}
-# Add labels to the deployment
-deploymentLabels: {}
 
 image:
   repository: draft
@@ -30,6 +26,11 @@ fullnameOverride: ""
 extraEnv:
   - name: API_URL
     value:
+
+cronjob:
+  schedule: "*/5 * * * *"
+  failedJobsHistoryLimit: 0
+  successfulJobsHistoryLimit: 0
 
 serviceAccount:
   enabled: false
