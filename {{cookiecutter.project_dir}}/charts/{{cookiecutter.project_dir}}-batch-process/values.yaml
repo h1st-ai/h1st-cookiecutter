@@ -1,4 +1,4 @@
-# Default values for {{cookiecutter.project_name}}-etl.
+# Default values for {{cookiecutter.project_name}}-batch-process.
 # This is a YAML-formatted file.
 # Add annotations to the pods
 podAnnotations: {}
@@ -27,6 +27,7 @@ extraEnv:
   - name: API_URL
     value:
 
+# define cronjob properties
 cronjob:
   schedule: "*/5 * * * *"
   failedJobsHistoryLimit: 0

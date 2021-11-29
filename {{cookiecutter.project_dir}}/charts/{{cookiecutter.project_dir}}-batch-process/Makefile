@@ -1,6 +1,6 @@
 CHART_REPO := http://jenkins-x-chartmuseum:8080
 CURRENT=$(pwd)
-NAME := {{cookiecutter.project_dir}}-etl
+NAME := {{cookiecutter.project_dir}}-batch-process
 OS := $(shell uname)
 RELEASE_VERSION := $(shell cat ../../VERSION)
 

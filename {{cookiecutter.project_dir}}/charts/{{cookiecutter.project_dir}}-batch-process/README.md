@@ -1,2 +1,2 @@
-# {{cookiecutter.project_name}}-etl
+# {{cookiecutter.project_name}}-batch-process
 

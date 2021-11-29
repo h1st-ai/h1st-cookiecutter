@@ -1,6 +1,4 @@
-FROM python
-
-RUN pip install poetry
+FROM shiti/python-poetry:1.0.0
 
 ENV PATH=/app/.venv/bin:$PATH
 
