@@ -33,5 +33,6 @@ DATABASES = {
 
 # CORS SETTINGS
 CORS_ALLOWED_ORIGINS = [
-    os.environ.get('CORS_ALLOWED_ORIGINS')
+    "http://{}".format(os.environ.get('CORS_ALLOWED_ORIGINS')),
+    "https://{}".format(os.environ.get('CORS_ALLOWED_ORIGINS'))
 ]
