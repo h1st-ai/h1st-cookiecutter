@@ -22,8 +22,10 @@ class App extends React.Component {
 
     translate(event) {
         event.preventDefault();
-        let serviceIp = "http://{{cookiecutter.project_dir}}-api";
-        axios.post(serviceIp + '/api/v1/translate', {
+
+        const { API_HOST, location } = window;
+
+        axios.post(`${location.protocol}//${API_HOST}/api/v1/translate`, {
             'text': this.state.text,
             'input_language': 'english',
             'output_language': 'english'
@@ -54,7 +56,7 @@ class App extends React.Component {
                     </div>
                     <div className="col">
                         <label className="form-label">Result:</label>
-                        <div className="h-50 bg-light">
+                        <div className="h-50 bg-light px-3 py-2">
                             {this.state.output}
                         </div>
                     </div>

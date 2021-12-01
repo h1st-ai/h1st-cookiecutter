@@ -63,6 +63,7 @@ canary:
 
 service:
   name: {{ cookiecutter.project_dir }}-ui
+  baseName: {{ cookiecutter.project_dir }}
   type: ClusterIP
   externalPort: 80
   internalPort: 80
