@@ -21,7 +21,7 @@ app.use(
 );
 
 app.use("/__health", (req, res) => {
-  res.header("Content-Type", "application/json");
+  res.setHeader("Content-Type", "application/json");
   res.send({ status: "ok" });
 });
 
