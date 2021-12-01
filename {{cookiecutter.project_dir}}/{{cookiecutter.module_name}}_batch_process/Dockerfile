@@ -10,4 +10,4 @@ RUN poetry install
 
 COPY . ./
 
-CMD ["poetry", "run", "python", "app.py"]
+ENTRYPOINT ["python", "app.py"]
