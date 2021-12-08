@@ -24,17 +24,17 @@ fullnameOverride: ""
 
 # define common environment variables
 # for example AWS credentials
-commonEnv:
-  - name: AWS_ACCESS_KEY_ID
-    valueFrom:
-      secretKeyRef:
-        name: aws-account-secret
-        key: aws-access-key-id
-  - name: AWS_SECRET_ACCESS_KEY
-    valueFrom:
-      secretKeyRef:
-        name: aws-account-secret
-        key: aws-secret-access-key
+# commonEnv:
+#   - name: AWS_ACCESS_KEY_ID
+#     valueFrom:
+#       secretKeyRef:
+#         name: aws-account-secret
+#         key: aws-access-key-id
+#   - name: AWS_SECRET_ACCESS_KEY
+#     valueFrom:
+#       secretKeyRef:
+#         name: aws-account-secret
+#         key: aws-secret-access-key
 
 # define cronjob properties
 cronjob:
