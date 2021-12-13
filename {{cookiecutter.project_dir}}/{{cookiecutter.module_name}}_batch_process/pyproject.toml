@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "{{ cookiecutter.module_name }}-batch-process"
+version = "{{ cookiecutter.version }}"
+description = "{ cookiecutter.project_short_description }} - Batch Process"
+authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
+
+[tool.poetry.dependencies]
+python = "3.9.7"
+h1st = "0.0.6"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.10.2"
+pre-commit = "^2.15.0"
+commitizen = "^2.18.1"
+pytest = "^6.2.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+app = "app:main"

@@ -38,6 +38,11 @@ spec:
                 poetry install --no-interaction
                 poetry run pylint --init-hook="sys.path.append('.')" --load-plugins pylint_django **/*.py
                 poetry run pytest
+                cd {{cookiecutter.module_name}}_batch_process
+                poetry check
+                poetry install --no-interaction
+                poetry run pylint --init-hook="sys.path.append('.')" **/*.py
+                poetry run pytest
   podTemplate: {}
   serviceAccountName: tekton-bot
   timeout: 12h0m0s

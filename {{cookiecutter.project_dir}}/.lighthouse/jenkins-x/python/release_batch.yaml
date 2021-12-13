@@ -1,0 +1,68 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  creationTimestamp: null
+  name: python-release
+spec:
+  pipelineSpec:
+    tasks:
+      - name: from-python-build-pack
+        resources: {}
+        taskSpec:
+          metadata: {}
+          stepTemplate:
+            image: uses:jenkins-x/jx3-pipeline-catalog/tasks/python/release.yaml@versionStream
+            name: ""
+            resources:
+              requests:
+                cpu: 400m
+                memory: 512Mi
+            workingDir: /workspace/source
+          steps:
+            - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone.yaml@versionStream
+              name: ""
+              resources: {}
+            - name: next-version
+              script: |
+                #!/usr/bin/env sh
+                jx-release-version > VERSION
+            - name: jx-variables
+              image: ghcr.io/jenkins-x/jx-boot:3.2.207
+              script: |
+                #!/usr/bin/env sh
+                jx gitops variables
+                export APP_NAME='{{cookiecutter.project_dir}}-batch-process'
+                echo "export APP_NAME='{{cookiecutter.project_dir}}-batch-process'" >> .jx/variables.sh
+                {% if cookiecutter.docker_org_name|length > 0 %}
+                export DOCKER_REGISTRY_ORG='{{cookiecutter.docker_org_name}}'
+                echo "DOCKER_REGISTRY_ORG='{{cookiecutter.docker_org_name}}'" >> .jx/variables.sh
+                {% endif %}
+              resources: { }
+            - name: build-python-validate
+              image: shiti/python-poetry:1.0.0
+              resources: { }
+              env:
+                - name: POETRY_DJANGO_SETTINGS_MODULE
+                  value: "config.settings.test"
+              script: |
+                #!/bin/sh
+                apt-get install -y libpq-dev gcc
+                cd {{cookiecutter.module_name}}_batch_process
+                poetry check
+                poetry install --no-interaction
+                poetry run pylint --init-hook="sys.path.append('.')" **/*.py
+                poetry run pytest
+            - name: check-registry
+              resources: {}
+            - name: build-container-build
+              image: gcr.io/kaniko-project/executor:v1.6.0-debug
+              resources: { }
+              script: |
+                #!/busybox/sh
+                source .jx/variables.sh
+                cp /tekton/creds-secrets/tekton-container-registry-auth/.dockerconfigjson /kaniko/.docker/config.json
+                /kaniko/executor $KANIKO_FLAGS --context=/workspace/source/{{cookiecutter.module_name}}_batch_process --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSION
+  podTemplate: {}
+  serviceAccountName: tekton-bot
+  timeout: 12h0m0s
+status: {}

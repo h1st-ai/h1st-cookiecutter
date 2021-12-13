@@ -1,0 +1,6 @@
+apiVersion: v2
+name: {{ cookiecutter.project_dir }}-batch-process
+version: "{{ cookiecutter.version }}"
+description: Batch Process App for {{ cookiecutter.project_name }}
+appVersion: "{{ cookiecutter.version }}"
+type: application
