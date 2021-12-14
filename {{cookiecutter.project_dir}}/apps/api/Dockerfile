@@ -8,7 +8,13 @@ COPY poetry.lock ./pyproject.toml ./
 
 RUN poetry install
 
-COPY . ./
+COPY apps/api/poetry.lock apps/api/pyproject.toml ./
+
+RUN poetry install
+
+COPY apps/api/ ./
+
+ADD common ./common
 
 EXPOSE 8080
 

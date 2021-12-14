@@ -3,12 +3,14 @@ version: "3"
 services:
   {{cookiecutter.project_dir}}-api:
     build:
-      context: {{cookiecutter.module_name}}_api
+      context: .
+      dockerfile: apps/api/Dockerfile
     ports:
       - "8080:8080"
   {{cookiecutter.project_dir}}-ui:
     build:
-      context: {{cookiecutter.project_dir}}-ui
+      context: .
+      dockerfile: apps/ui/Dockerfile
       args:
         APP_SERVER_HOST: localhost
         APP_SERVER_PORT: 8080
