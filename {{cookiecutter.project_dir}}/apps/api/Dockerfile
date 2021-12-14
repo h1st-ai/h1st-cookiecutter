@@ -4,10 +4,6 @@ ENV PATH=/app/.venv/bin:$PATH
 
 WORKDIR /app
 
-COPY poetry.lock ./pyproject.toml ./
-
-RUN poetry install
-
 COPY apps/api/poetry.lock apps/api/pyproject.toml ./
 
 RUN poetry install
