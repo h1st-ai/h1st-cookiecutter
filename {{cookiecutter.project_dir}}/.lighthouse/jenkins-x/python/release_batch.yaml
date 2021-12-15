@@ -37,7 +37,7 @@ spec:
                 export DOCKER_REGISTRY_ORG='{{cookiecutter.docker_org_name}}'
                 echo "DOCKER_REGISTRY_ORG='{{cookiecutter.docker_org_name}}'" >> .jx/variables.sh
                 {% endif %}
-                echo "DOCKERFILE_PATH='apps/batch-process/Dockerfile'" >> .jx/variables.sh
+                echo "DOCKERFILE_PATH='apps/batch_process/Dockerfile'" >> .jx/variables.sh
               resources: { }
             - name: build-python-validate
               image: shiti/python-poetry:1.0.0
