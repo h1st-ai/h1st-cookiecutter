@@ -86,7 +86,7 @@ poetry run pytest
   ```
   - Add the following line to the `script` section of the `promote-jx-promote` step
   ```shell
-  jx promote --app {{cookiecutter.project_dir}}-batch-inference --version $VERSION -b --all --timeout 1h --no-poll
+  jx promote --app {{cookiecutter.project_dir}}-batch-inference --version $VERSION -b --all --timeout 1h
   ```
 
 4. Copy `charts/{{cookiecutter.project_dir}}-batch-process` folder into `charts/{{cookiecutter.project_dir}}-batch-inference`.
