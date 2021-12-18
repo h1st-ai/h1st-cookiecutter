@@ -37,6 +37,7 @@ spec:
                 export DOCKER_REGISTRY_ORG='{{cookiecutter.docker_org_name}}'
                 echo "DOCKER_REGISTRY_ORG='{{cookiecutter.docker_org_name}}'" >> .jx/variables.sh
                 {% endif %}
+                echo "DOCKERFILE_PATH='apps/batch_process/Dockerfile'" >> .jx/variables.sh
               resources: { }
             - name: build-python-validate
               image: shiti/python-poetry:1.0.0
@@ -47,7 +48,7 @@ spec:
               script: |
                 #!/bin/sh
                 apt-get install -y libpq-dev gcc
-                cd {{cookiecutter.module_name}}_batch_process
+                cd apps/batch_process
                 poetry check
                 poetry install --no-interaction
                 poetry run pylint --init-hook="sys.path.append('.')" **/*.py
@@ -61,7 +62,7 @@ spec:
                 #!/busybox/sh
                 source .jx/variables.sh
                 cp /tekton/creds-secrets/tekton-container-registry-auth/.dockerconfigjson /kaniko/.docker/config.json
-                /kaniko/executor $KANIKO_FLAGS --context=/workspace/source/{{cookiecutter.module_name}}_batch_process --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSION
+                /kaniko/executor $KANIKO_FLAGS --context=/workspace/source --dockerfile=${DOCKERFILE_PATH:-Dockerfile} --destination=$PUSH_CONTAINER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$VERSION
   podTemplate: {}
   serviceAccountName: tekton-bot
   timeout: 12h0m0s
