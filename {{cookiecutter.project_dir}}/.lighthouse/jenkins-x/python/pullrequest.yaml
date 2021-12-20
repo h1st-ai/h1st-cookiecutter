@@ -19,7 +19,7 @@ spec:
                 memory: 512Mi
             workingDir: /workspace/source
           steps:
-            - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone.yaml@versionStream
+            - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
               name: ""
               resources: {}
             - name: jx-variables
@@ -33,10 +33,15 @@ spec:
               script: |
                 #!/bin/sh
                 apt-get install -y libpq-dev gcc
-                cd {{cookiecutter.module_name}}_api
+                cd apps/api
                 poetry check
                 poetry install --no-interaction
                 poetry run pylint --init-hook="sys.path.append('.')" --load-plugins pylint_django **/*.py
+                poetry run pytest
+                cd apps/batch_process
+                poetry check
+                poetry install --no-interaction
+                poetry run pylint --init-hook="sys.path.append('.')" **/*.py
                 poetry run pytest
   podTemplate: {}
   serviceAccountName: tekton-bot

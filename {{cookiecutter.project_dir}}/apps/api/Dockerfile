@@ -4,11 +4,13 @@ ENV PATH=/app/.venv/bin:$PATH
 
 WORKDIR /app
 
-COPY poetry.lock ./pyproject.toml ./
+COPY apps/api/poetry.lock apps/api/pyproject.toml ./
 
 RUN poetry install
 
-COPY . ./
+COPY apps/api/ ./
+
+ADD common ./common
 
 EXPOSE 8080
 
