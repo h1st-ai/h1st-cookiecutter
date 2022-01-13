@@ -15,6 +15,8 @@ metadata:
 {{ toYaml $annotations | indent 4 }}
 {{- end }}
   name: {{ .Values.service.name }}
+  labels:
+    {{- include "labels" . | nindent 4 }}
 {{- if .Values.ingress.labels }}
 {{ toYaml .Values.ingress.labels | indent 4 }}
 {{- end }}

@@ -9,6 +9,9 @@ podsLabels: {}
 # Add labels to the deployment
 deploymentLabels: {}
 
+commonLabels:
+  project: {{ cookiecutter.project_dir }}
+
 image:
   repository: draft
   tag: dev

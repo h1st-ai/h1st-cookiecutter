@@ -7,9 +7,11 @@ metadata:
 {{- else }}
   name: {{ template "fullname" . }}
 {{- end }}
-  {{- if .Values.serviceAccount.labels }}
-  labels: {{- toYaml .Values.serviceAccount.labels | nindent 4 }}
-  {{- end }}
+  labels:
+    {{- include "labels" . | nindent 4 }}
+{{- if .Values.serviceAccount.labels }}
+{{ toYaml .Values.serviceAccount.labels | nindent 4 }}
+{{- end }}
   {{- if .Values.serviceAccount.annotations }}
   annotations: {{ toYaml .Values.serviceAccount.annotations | nindent 4 }}
   {{- end }}

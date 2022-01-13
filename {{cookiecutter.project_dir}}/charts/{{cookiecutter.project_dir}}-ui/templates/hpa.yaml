@@ -4,6 +4,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: {{ template "fullname" . }}
   labels:
+    {{- include "labels" . | nindent 4 }}
     draft: {{ default "draft-app" .Values.draft }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 {{- if .Values.hpa.labels }}

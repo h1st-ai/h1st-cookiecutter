@@ -4,6 +4,7 @@ kind: Canary
 metadata:
   name: {{ template "fullname" . }}
   labels:
+    {{- include "labels" . | nindent 4 }}
     draft: {{ default "draft-app" .Values.draft }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 {{- if .Values.canary.labels }}
@@ -49,8 +50,9 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: {{ template "fullname" . }}
-{{- if .Values.canary.gatewayLabels }}
   labels:
+    {{- include "labels" . | nindent 4 }}
+{{- if .Values.canary.gatewayLabels }}
 {{ toYaml .Values.canary.gatewayLabels | indent 4 }}
 {{- end }}
 spec:

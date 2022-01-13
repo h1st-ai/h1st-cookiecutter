@@ -5,6 +5,7 @@ kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
   labels:
+    {{- include "labels" . | nindent 4 }}
     draft: {{ default "draft-app" .Values.draft }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 {{- if .Values.deploymentLabels }}
@@ -21,10 +22,11 @@ spec:
   template:
     metadata:
       labels:
+        {{- include "labels" . | nindent 8 }}
         draft: {{ default "draft-app" .Values.draft }}
         app: {{ template "fullname" . }}
 {{- if .Values.podsLabels }}
-{{ toYaml .Values.podsLabels | indent 6 }}
+{{ toYaml .Values.podsLabels | indent 8 }}
 {{- end }}
 {{- if .Values.podAnnotations }}
       annotations:
