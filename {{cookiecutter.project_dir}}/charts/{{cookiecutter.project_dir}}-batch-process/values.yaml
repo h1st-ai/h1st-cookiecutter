@@ -5,6 +5,9 @@ podAnnotations: {}
 # Add labels to the pods
 podsLabels: {}
 
+commonLabels:
+  project: {{ cookiecutter.project_dir }}
+
 image:
   repository: draft
   tag: dev

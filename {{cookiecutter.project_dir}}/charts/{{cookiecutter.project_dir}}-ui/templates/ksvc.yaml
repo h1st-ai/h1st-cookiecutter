@@ -8,6 +8,7 @@ metadata:
   name: {{ template "fullname" . }}
   {{- end }}
   labels:
+    {{- include "labels" . | nindent 4 }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 {{- if .Values.service.labels }}
 {{ toYaml .Values.service.labels | indent 4 }}
@@ -17,8 +18,9 @@ spec:
     metadata:
       annotations:
         autoscaling.knative.dev/minScale: "0"
-{{- if .Values.podsLabels }}
       labels:
+        {{- include "labels" . | nindent 8 }}
+{{- if .Values.podsLabels }}
 {{ toYaml .Values.podsLabels | indent 8 }}
 {{- end }}
     spec:
