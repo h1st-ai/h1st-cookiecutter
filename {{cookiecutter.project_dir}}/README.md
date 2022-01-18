@@ -8,7 +8,7 @@
 ### Starting the app
 ```shell
 docker-compose build
-docker-compose up -d
+DJANGO_SECRET_KEY=$RANDOM docker-compose up
 ```
 The app will be running and accessible at `http://localhost:80/`
 
