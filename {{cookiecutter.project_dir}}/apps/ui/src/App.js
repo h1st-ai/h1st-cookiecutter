@@ -22,8 +22,7 @@ class App extends React.Component {
 
     translate(event) {
         event.preventDefault();
-        let serviceIp = "http://{{cookiecutter.project_dir}}-api";
-        axios.post(serviceIp + '/api/v1/translate', {
+        axios.post('/api/v1/translate/', {
             'text': this.state.text,
             'input_language': 'english',
             'output_language': 'english'

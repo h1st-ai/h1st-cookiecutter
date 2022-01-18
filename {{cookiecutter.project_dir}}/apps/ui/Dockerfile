@@ -2,12 +2,6 @@ FROM node:16-alpine3.14 as build
 
 ENV YARN_VERSION 1.22.5
 
-ARG APP_SERVER_HOST
-ARG APP_SERVER_PORT
-
-ENV REACT_APP_SERVER_HOST $APP_SERVER_HOST
-ENV REACT_APP_SERVER_PORT $APP_SERVER_PORT
-
 RUN apk update
 
 RUN apk add --no-cache --virtual .build-deps-yarn curl \
@@ -18,16 +12,28 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl \
     && rm yarn-v$YARN_VERSION.tar.gz \
     && apk del .build-deps-yarn
 
+RUN apk add nginx
+
+COPY ./nginx/nginx.conf /etc/nginx/http.d/default.conf
+
+FROM build as react-app
 # set working directory
 WORKDIR /app
 
 # install app dependencies
-COPY package.json yarn.lock ./
-RUN yarn
+COPY package.json ./
 COPY . ./
-RUN yarn build
+RUN npm install && npm run build
 
-FROM nginx:stable-alpine
-COPY --from=build /app/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM build
+
+# set working directory
+WORKDIR /app
+
+RUN npm install express cors http http-proxy-middleware
+
+COPY server.js ./
+
+COPY --from=react-app /app/build /usr/share/nginx/html
+
+CMD [ "sh", "-c", "nginx && node /app/server.js" ]
