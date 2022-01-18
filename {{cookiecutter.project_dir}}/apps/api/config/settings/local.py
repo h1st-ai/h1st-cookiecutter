@@ -25,7 +25,3 @@ DATABASES = {
     }
 }
 
-# CORS SETTINGS
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8888'
-]
