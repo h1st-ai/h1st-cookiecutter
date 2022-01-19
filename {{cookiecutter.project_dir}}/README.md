@@ -8,7 +8,7 @@
 ### Starting the app
 ```shell
 docker-compose build
-docker-compose up -d
+DJANGO_SECRET_KEY=$RANDOM docker-compose up
 ```
 The app will be running and accessible at `http://localhost:80/`
 
@@ -33,9 +33,10 @@ The server will be running and a request to `http://localhost:8000/api/v1/foo` w
 
 ### Starting the UI
 ```shell
-cd react_app
-yarn install
-yarn start
+cd apps/ui
+npm install
+node server.js
+npm start
 ```
 The UI will be accessible at `http://localhost:3000/`
 

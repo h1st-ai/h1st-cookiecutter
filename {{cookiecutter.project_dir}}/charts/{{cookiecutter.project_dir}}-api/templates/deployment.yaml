@@ -51,6 +51,13 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
+        - name: HOST_NAME
+          value: {{ .Values.service.name }}{{ .Values.jxRequirements.ingress.namespaceSubDomain }}{{ .Values.jxRequirements.ingress.domain }}
+        - name: DJANGO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: api-secrets
+              key: django-api-secret
 {{- if .Values.extraEnv }}
 {{ toYaml .Values.extraEnv | indent 8}}
 {{- end }}
