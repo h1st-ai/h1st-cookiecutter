@@ -11,7 +11,7 @@ services:
       - DJANGO_SECRET_KEY
       - DJANGO_ALLOWED_HOSTS=localhost,{{cookiecutter.project_dir}}-api
     command: gunicorn config.wsgi -b 0.0.0.0:8080
-    {{cookiecutter.project_dir}}-ui:
+  {{cookiecutter.project_dir}}-ui:
     build:
       context: apps/ui
     environment:
