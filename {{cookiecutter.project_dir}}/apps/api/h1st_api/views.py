@@ -11,7 +11,15 @@ For more information, please see https://docs.djangoproject.com/en/3.2/topics/cl
 from django.http import HttpResponse, JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
-from ai.models.translate import TranslateModel
+
+try:
+    from ai.models.translate import TranslateModel
+except ModuleNotFoundError as ex:
+    import sys
+    from pathlib import Path
+    ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent.parent
+    sys.path.append(str(ROOT_DIR))
+    from ai.models.translate import TranslateModel
 
 
 def default(request):
