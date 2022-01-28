@@ -7,7 +7,7 @@ authors = ["{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"]
 [tool.poetry.dependencies]
 python = "3.9.7"
 
-h1st = "0.0.5"
+h1st = "0.1.2"
 Django = "^3.2.7"
 djangorestframework = "^3.12.4"
 django-cors-headers = "^3.7.0"
