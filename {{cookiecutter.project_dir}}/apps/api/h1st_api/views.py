@@ -11,7 +11,19 @@ For more information, please see https://docs.djangoproject.com/en/3.2/topics/cl
 from django.http import HttpResponse, JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
-import h1st_models.translate
+
+# append python path to include ai package
+import sys
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent.parent
+sys.path.append(str(ROOT_DIR))
+
+from ai.models.translate import TranslateModel
+from ai.models.my_ml_model import MyMLModel
+
+translate_model = TranslateModel()
+my_ml_model = MyMLModel().load_params('example_ml_model')
 
 
 def default(request):
@@ -20,12 +32,13 @@ def default(request):
     return HttpResponse(text)
 
 
-translate_model = h1st_models.translate.TranslateModel()
-
-
 @api_view(['POST'])
 def translate(request):
     """Translate text to and from specified language"""
     data = JSONParser().parse(request)
-    result = translate_model.predict(data)["result"]
-    return JsonResponse({'output': result})
+
+    rule_based_result = translate_model.predict(data)["result"]
+    ml_result = my_ml_model.predict(data)['result']
+    final_result = rule_based_result + '|' + ml_result
+
+    return JsonResponse({'output': final_result})
