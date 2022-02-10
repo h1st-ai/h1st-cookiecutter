@@ -67,9 +67,9 @@ spec:
               script: |
                 #!/usr/bin/env sh
                 source .jx/variables.sh
-                jx promote --app {{cookiecutter.project_dir}}-api --version $VERSION -b --all --timeout 1h
-                jx promote --app {{cookiecutter.project_dir}}-ui --version $VERSION -b --all --timeout 1h
-                jx promote --app {{cookiecutter.project_dir}}-batch-process --version $VERSION -b --all --timeout 1h
+                jx promote --app {{cookiecutter.project_dir}}-api --version $VERSION -b -e staging
+                jx promote --app {{cookiecutter.project_dir}}-ui --version $VERSION -b -e staging
+                jx promote --app {{cookiecutter.project_dir}}-batch-process --version $VERSION -b -e staging
   podTemplate: {}
   serviceAccountName: tekton-bot
   timeout: 12h0m0s
